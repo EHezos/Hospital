@@ -1,94 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="hospitalApp" ng-init="patientDetails={}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="patient.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
 </head>
-<body>
+<body ng-controller="PatientController">
     <div class="sidebar">
-        <a href = "home.html">Home</a>
+        <a href="home.html">Home</a>
         <a href="patient.html">Patient</a>
-        <a href="#">Contact</a>
+        <a href="contact.html">Contact</a>
     </div>
     <div class="main">
         <h1>Welcome to Ben10 Hospital</h1>
         <hr>
-        <h2>Please Enter the patient detial</h2>
+        <h2>Please Enter the patient detail</h2>
         <form>
             <label for="name">Name:</label>
-            <input type="text" id="nameInput"> <br>
+            <input type="text" id="nameInput" ng-model="nameInput"> <br>
             <label for="age">Age:</label>
-            <input type="number" id="ageInput"> <br>
+            <input type="number" id="ageInput" ng-model="ageInput"> <br>
             <label for="gender">Gender:</label>
-            <select id="genderInput" name="gender" required>
+            <select id="genderInput" name="gender" ng-model="genderInput" required>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="other">Other</option>
             </select><br>
             <label for="heartbeat">Heartbeat:</label>
-            <input type="number" id="heartbeatInput"> <br>
+            <input type="number" id="heartbeatInput" ng-model="heartbeatInput"> <br>
             <label for="allergic">Allergic:</label>
-            <input type="text" id="allergicInput"> <br>
+            <input type="text" id="allergicInput" ng-model="allergicInput"> <br>
             <label for="disease">Disease:</label>
-            <input type="text" id="diseaseInput"> <br>
+            <input type="text" id="diseaseInput" ng-model="diseaseInput"> <br>
             <label for="doctor">Doctor:</label>
-            <input type="text" id="doctorInput"> <br>
+            <input type="text" id="doctorInput" ng-model="doctorInput"> <br>
             <label for="room">Room:</label>
-            <input type="text" id="roomInput"> <br>
+            <input type="text" id="roomInput" ng-model="roomInput"> <br>
             <label for="date">Date:</label>
-            <input type="date" id="dateInput"> <br>
+            <input type="date" id="dateInput" ng-model="dateInput"> <br>
             <label for="time">Time:</label>
-            <input type="time" id="timeInput"> <br>
+            <input type="time" id="timeInput" ng-model="timeInput"> <br>
 
-            <button type="button" onclick="showName()">Submit</button>
-          </form>
+            <button type="button" ng-click="showDetails()">Submit</button>
+        </form>
     </div>
     <hr>
     <div class="confirm">
-        <p id="nameOutput"></p>
-        <p id="ageOutput"></p>
-        <p id="genderOutput"></p>
-        <p id="heartbeatOutput"></p>
-        <p id="allergicOutput"></p>
-        <p id="diseaseOutput"></p>
-        <p id="doctorOutput"></p>
-        <p id="roomOutput"></p>
-        <p id="dateOutput"></p>
-        <p id="timeOutput"></p>
-
+        <p ng-bind="patientDetails.name"></p>
+        <p ng-bind="patientDetails.age"></p>
+        <p ng-bind="patientDetails.gender"></p>
+        <p ng-bind="patientDetails.heartbeat"></p>
+        <p ng-bind="patientDetails.allergic"></p>
+        <p ng-bind="patientDetails.disease"></p>
+        <p ng-bind="patientDetails.doctor"></p>
+        <p ng-bind="patientDetails.room"></p>
+        <p ng-bind="patientDetails.date"></p>
+        <p ng-bind="patientDetails.time"></p>
     </div>
-    
+
     <script>
-        function showName() {
-            var name = document.getElementById("nameInput").value;
-            var age = document.getElementById("ageInput").value;
-            var gender = document.getElementById("genderInput").value;
-            var heartbeat = document.getElementById("heartbeatInput").value;
-            var allergic = document.getElementById("allergicInput").value;
-            var disease = document.getElementById("diseaseInput").value;
-            var doctor = document.getElementById("doctorInput").value;
-            var room = document.getElementById("roomInput").value;
-            var date = document.getElementById("dateInput").value;
-            var time = document.getElementById("timeInput").value;
+        var app = angular.module('hospitalApp', []);
 
-
-            document.getElementById("nameOutput").innerHTML = "Your name is " + name;
-            document.getElementById("ageOutput").innerHTML = "Your age is " + age;
-            document.getElementById("genderOutput").innerHTML = "Your Gender is" + gender;
-            document.getElementById("heartbeatOutput").innerHTML = "Your Heartbeat is " + heartbeat;
-            document.getElementById("allergicOutput").innerHTML = "Your Allergic is " + allergic;
-            document.getElementById("diseaseOutput").innerHTML = "Your Disease is " + disease;
-            document.getElementById("doctorOutput").innerHTML = "Your Doctor is " + doctor;
-            document.getElementById("roomOutput").innerHTML = "Your Room is " + room;
-            document.getElementById("dateOutput").innerHTML = "Your Date is " + date;
-            document.getElementById("timeOutput").innerHTML = " Time is " + time;
-            
-        }
-            
-        
-        
+        app.controller('PatientController', function ($scope) {
+            $scope.showDetails = function () {
+                $scope.patientDetails = {
+                    name: "Your name is " + $scope.nameInput,
+                    age: "Your age is " + $scope.ageInput,
+                    gender: "Your Gender is " + $scope.genderInput,
+                    heartbeat: "Your Heartbeat is " + $scope.heartbeatInput,
+                    allergic: "Your Allergic is " + $scope.allergicInput,
+                    disease: "Your Disease is " + $scope.diseaseInput,
+                    doctor: "Your Doctor is " + $scope.doctorInput,
+                    room: "Your Room is " + $scope.roomInput,
+                    date: "Your Date is " + $scope.dateInput,
+                    time: "Time is " + $scope.timeInput,
+                };
+            };
+        });
     </script>
 </body>
-</html> 
+</html>

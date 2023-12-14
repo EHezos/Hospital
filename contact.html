@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="hospitalApp" ng-init="contactDetails={}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="patient.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="ContactController">
+    <div class="sidebar">
+        <a href="home.html">Home</a>
+        <a href="patient.html">Patient</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    <div class="main">
+        <h1>Contact Ben10 Hospital</h1>
+        <hr>
+        <h2>Get in touch with us</h2>
+        <form>
+            <label for="name">Your Name:</label><br>
+            <input type="text" id="nameInput" ng-model="contactDetails.name" placeholder="John Doe"> <br><br>
+            <label for="email">Your Email:</label>
+            <input type="email" id="emailInput" ng-model="contactDetails.email" placeholder="john.doe@example.com"> <br><br>
+            <label for="message">Your Message:</label><br>
+            <!-- Use textarea for multiline input -->
+            <textarea id="messageInput" rows="4" ng-model="contactDetails.message" placeholder="Type your message here"></textarea> <br><br>
+
+            <button type="button" ng-click="submitContactForm()">Submit</button>
+        </form>
+    </div>
+    <hr>
+    <div class="confirm">
+        <p ng-bind="'Thank you, ' + contactDetails.name + ', for contacting us.'"></p>
+        <p ng-bind="'We will reach out to you at ' + contactDetails.email"></p>
+        <p ng-bind="'Your message: ' + contactDetails.message"></p>
+    </div>
+
+    <script>
+        var app = angular.module('hospitalApp', []);
+
+        app.controller('ContactController', function ($scope) {
+            $scope.contactDetails = {
+                name: "John Doe", // Default name
+                email: "john.doe@example.com", // Default email
+                message: "Welcome to Ben10 Hospital!" // Default message
+            };
+
+            $scope.submitContactForm = function () {
+                // No need for a separate function; data is automatically bound and updated
+            };
+        });
+    </script>
+</body>
+</html>
